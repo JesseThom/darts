@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Player View";
+}
+@model PlayerModel
+
+<div class="whitebox w-75-sm mx-auto p-3">
+    <h2 class="text-center">@Model.playerDb?.FirstName @Model.playerDb?.LastName</h2>
+    <table class="table table-dark">
+        <thead>
+            <th>Hat Tricks</th>
+            <th>High Tons</th>
+            <th>Low Tons</th>
+            <th>White Horses</th>
+            <th>9 Marks</th>
+            <th>8 Marks</th>
+            <th>7 Marks</th>
+            <th>6 Marks</th>
+            <th>5 Marks</th>
+            <th>Week</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.playerDb.Hat</td>
+                <td>@Model.playerDb.HTon</td>
+                <td>@Model.playerDb.LTon</td>
+                <td>@Model.playerDb.Whrse</td>
+                <td>@Model.playerDb._9MR</td>
+                <td>@Model.playerDb._8MR</td>
+                <td>@Model.playerDb._7MR</td>
+                <td>@Model.playerDb._6MR</td>
+                <td>@Model.playerDb._5MR</td>
+                <td>All Weeks</td>
+            </tr>
+            @if(Model.playerJson is null)
+            {
+                <tr>
+                    <td></td>
+                    <td>No</td>
+                    <td>stats</td>
+                    <td>from</td>
+                    <td>@Model.playerDb.FirstName</td>
+                    <td>@Model.playerDb.LastName</td>
+                    <td>this</td>
+                    <td>week</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+            else
+            {
+            <tr>
+                <td>@Model.playerJson.Hat</td>
+                <td>@Model.playerJson.HTon</td>
+                <td>@Model.playerJson.LTon</td>
+                <td>@Model.playerJson.Whrse</td>
+                <td>@Model.playerJson._9MR</td>
+                <td>@Model.playerJson._8MR</td>
+                <td>@Model.playerJson._7MR</td>
+                <td>@Model.playerJson._6MR</td>
+                <td>@Model.playerJson._5MR</td>
+                <td>@Model.playerJson.Week</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

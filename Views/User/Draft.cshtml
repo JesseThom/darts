@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Draft";
+}
+@model MyViewModel
+
+<div class="whitebox w-50-lg w-75-sm mx-auto p-3">
+    <h2 class="text-center mb-3">Available players</h2>
+    @* <h3>{NickName}'s turn, Time left: 60 sec</h3> *@
+
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            @* <th>Available Players</th> *@
+            @* <th></th> *@
+        </thead>
+        <tbody>
+            @{int num = Model.TeamPlayers.Count();}
+            @foreach (Player player in Model.AvailablePlayers)
+            {
+                <tr>
+                    <td>@player.FirstName @player.LastName</td>
+                    <td class="text-center">
+                    @if(num != 4 && Model.UsersTeam.TeamUpdate == 0)
+                    {
+                        <form asp-controller="Player" asp-action="PlayerUpdate" asp-route-id="@player.PlayerId" method="post">
+                            <button class="btn btn-secondary">Add</button>
+                        </form>
+                    }
+                    @if(Context.Session.GetInt32("uuid")== 1)
+                    {
+                        <form asp-controller="Player" asp-action="PlayerDelete" asp-route-id="@player.PlayerId" method="post">
+                            <button class="btn btn-danger mt-2">Delete</button>
+                        </form>
+                    }
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <th>Your Team</th>
+        </thead>
+        <tbody>
+            @foreach (Player player in Model.TeamPlayers)
+            {
+                <tr>
+                    <td>@player.FirstName @player.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@if(Context.Session.GetInt32("uuid")== 1)
+{
+    @if(Context.Session.GetInt32("draft")== 1)
+    {
+    <div class="text-center">
+        <a class="btn btn-secondary mx-auto mt-3" asp-controller="User" asp-action="DraftToggle">Stop Draft</a>
+    </div>
+    }
+    else
+    {
+    <div class="text-center">
+        <a class="btn btn-secondary mx-auto mt-3" asp-controller="User" asp-action="DraftToggle">Start Draft</a>
+    </div>
+    }
+}
+</div>

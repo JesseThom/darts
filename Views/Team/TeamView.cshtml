@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Team View";
+}
+@model Team
+
+<div class="whitebox w-75-sm mx-auto p-3">
+    <div class="d-flex justify-content-evenly">
+        <h2 class="mb-3">@Model.TeamName</h2>
+        <h2>Points: @Model.TeamPoints</h2>
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+            <th>Players</th>
+            <th class="text-center">Points</th>
+            <th class="text-center">Action</th>
+        </thead>
+        <tbody>
+            
+            @foreach (Player player in Model.TeamPlayers)
+            {
+                <tr>
+                    <td><a asp-controller="Player" asp-action="PlayerView" asp-route-id="@player.PlayerId">@player.FirstName @player.LastName</a></td>
+                    @* <td>@player.FirstName @player.LastName</td> *@
+                    <td class="text-center">@player.PlayerPoints</td>
+                    @if(Model.UserId == Context.Session.GetInt32("uuid")&& Model.TeamUpdate == 0)
+                    {
+                    <td class="text-center"><form asp-controller="Player" asp-action="PlayerRemove" asp-route-id="@player.PlayerId" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if(Model.UserId == Context.Session.GetInt32("uuid"))
+    {
+        <a class="btn btn-secondary" asp-action="TeamEdit" asp-controller="Team" asp-route-id="@Model.TeamId">Edit Team Name</a>
+    }
+</div>
