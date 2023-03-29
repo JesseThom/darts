@@ -16,6 +16,7 @@ public class TeamController : Controller
         _context = context;
     }
 
+    [SessionCheck]
         [HttpGet("/team/new")]
     public IActionResult TeamNew()
     {
@@ -37,6 +38,7 @@ public class TeamController : Controller
         return View("TeamNew");
     }
 
+    [SessionCheck]
         [HttpGet("/team/{id}")]
     public IActionResult TeamView(int id)
     {
@@ -119,5 +121,12 @@ public class TeamController : Controller
             _context.SaveChanges();
         }
         return RedirectToAction("Dashboard", "User");
+    }
+    
+    [SessionCheck]
+    [HttpGet("/bracket")]
+    public IActionResult Bracket()
+    {
+        return View();
     }
 }

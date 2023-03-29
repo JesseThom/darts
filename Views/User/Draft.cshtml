@@ -5,12 +5,15 @@
 
 <div class="whitebox w-50-lg w-75-sm mx-auto p-3">
     <h2 class="text-center mb-3">Available players</h2>
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+
     @* <h3>{NickName}'s turn, Time left: 60 sec</h3> *@
 
     <table class="table table-dark table-striped table-hover">
         <thead>
-            @* <th>Available Players</th> *@
-            @* <th></th> *@
         </thead>
         <tbody>
             @{int num = Model.TeamPlayers.Count();}

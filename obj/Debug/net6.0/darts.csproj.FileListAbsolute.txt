@@ -34,3 +34,4 @@ C:\Users\MSI\Desktop\C#\darts\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memo
 C:\Users\MSI\Desktop\C#\darts\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\MSI\Desktop\C#\darts\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\MSI\Desktop\C#\darts\obj\Debug\net6.0\darts.csproj.CopyComplete
+C:\Users\MSI\Desktop\C#\darts\bin\Debug\net6.0\zerostats.json

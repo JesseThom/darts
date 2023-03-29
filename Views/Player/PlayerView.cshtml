@@ -7,6 +7,7 @@
     <h2 class="text-center">@Model.playerDb?.FirstName @Model.playerDb?.LastName</h2>
     <table class="table table-dark">
         <thead>
+            <th>Week</th>
             <th>Hat Tricks</th>
             <th>High Tons</th>
             <th>Low Tons</th>
@@ -16,10 +17,10 @@
             <th>7 Marks</th>
             <th>6 Marks</th>
             <th>5 Marks</th>
-            <th>Week</th>
         </thead>
         <tbody>
             <tr>
+                <td>All Weeks</td>
                 <td>@Model.playerDb.Hat</td>
                 <td>@Model.playerDb.HTon</td>
                 <td>@Model.playerDb.LTon</td>
@@ -29,7 +30,6 @@
                 <td>@Model.playerDb._7MR</td>
                 <td>@Model.playerDb._6MR</td>
                 <td>@Model.playerDb._5MR</td>
-                <td>All Weeks</td>
             </tr>
             @if(Model.playerJson is null)
             {
@@ -49,6 +49,7 @@
             else
             {
             <tr>
+                <td>@Model.playerJson.Week</td>
                 <td>@Model.playerJson.Hat</td>
                 <td>@Model.playerJson.HTon</td>
                 <td>@Model.playerJson.LTon</td>
@@ -58,7 +59,6 @@
                 <td>@Model.playerJson._7MR</td>
                 <td>@Model.playerJson._6MR</td>
                 <td>@Model.playerJson._5MR</td>
-                <td>@Model.playerJson.Week</td>
             </tr>
             }
         </tbody>

@@ -18439,6 +18439,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\MSI\\Desktop\\C#\\darts\\Views\\Team\\Bracket.cshtml",
+      "TargetPath": "Views\\Team\\Bracket.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MSI\\Desktop\\C#\\darts\\Views\\Shared\\Dashboard.cshtml",
       "TargetPath": "Views\\Shared\\Dashboard.cshtml",
       "FileKind": "mvc"

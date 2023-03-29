@@ -18,7 +18,7 @@
             <tr>
                 <td>@place</td>
                 @* <td>@team.TeamName</td> *@
-                <td><a asp-action="TeamView" asp-controller="Team" asp-route-id="@team.TeamId">@team.TeamName</a></td>
+                <td><a class="nav-link text-light" asp-action="TeamView" asp-controller="Team" asp-route-id="@team.TeamId">@team.TeamName</a></td>
                 <td>@team.TeamPoints</td>
             </tr>
         }

@@ -38,6 +38,12 @@ public class UserController : Controller
     {
         Team? MyTeam = _context.Teams
             .FirstOrDefault(team => team.UserId == (int)HttpContext.Session.GetInt32("uuid"));
+            
+        //redirects to dashboard if no team is created yet
+        if (MyTeam is null)
+        {
+            return RedirectToAction("Dashboard");
+        }
 
         MyViewModel DraftModel = new MyViewModel()
         {

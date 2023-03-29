@@ -30,6 +30,7 @@ public class PlayerController : Controller
 
         List<Player> ExhistingPlayers = _context.Players.ToList();
 
+        //checks if player from current week exhist in database
         foreach (PlayerJson player in AllPlayers)
         {
             Player ePlayer = ExhistingPlayers.FirstOrDefault(p => p.FirstName == player.FirstName && p.LastName == player.LastName);
@@ -46,6 +47,18 @@ public class PlayerController : Controller
                 // TeamUpdate();
             }
         }
+
+    // if player didn't play current week changes point to 0
+        foreach (Player playerdb in ExhistingPlayers)
+        {
+            PlayerJson playerJson = AllPlayers.FirstOrDefault(f => f.FirstName == playerdb.FirstName && f.LastName == playerdb.LastName);
+            if(playerJson is null)
+            {
+                playerdb.PlayerPoints = 0;
+                _context.SaveChanges();
+            }
+        }
+
         TeamUpdate();
         //enables team update
         List<Team> AllTeams = _context.Teams.ToList();
@@ -83,8 +96,7 @@ public class PlayerController : Controller
                 Team? OneTeam = _context.Teams
                 .Include(i => i.TeamPlayers)
                 .SingleOrDefault(i => i.TeamId == team.TeamId);
-                System.Console.WriteLine(OneTeam.TeamPlayers.Sum(i => i.PlayerPoints));
-                team.TeamPoints = OneTeam.TeamPlayers.Sum(i => i.PlayerPoints);
+                team.TeamPoints += OneTeam.TeamPlayers.Sum(i => i.PlayerPoints);
                 _context.SaveChanges();
             }
     }
@@ -161,7 +173,7 @@ public class PlayerController : Controller
 
         if (OnePlayer == null)
         {
-            return View("Index");
+            return View(ThePlayer);
         }
 
         return View(ThePlayer);
@@ -190,11 +202,18 @@ public class PlayerController : Controller
 
         if (OldPlayer != null)
         {
+            if(OldPlayer.TeamId == null)
+            {
             OldPlayer.TeamId = MyTeam?.TeamId;
-            // add more attributes here if needed
             OldPlayer.UpdatedAt = DateTime.Now;
 
             _context.SaveChanges();
+            TempData["Message"] = "Player added!";
+            }
+            else
+            {
+                TempData["Message"] = "Someone else added player, Choose again...";
+            }
 
             return RedirectToAction("Draft", "User");
 

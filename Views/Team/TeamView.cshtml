@@ -19,7 +19,7 @@
             @foreach (Player player in Model.TeamPlayers)
             {
                 <tr>
-                    <td><a asp-controller="Player" asp-action="PlayerView" asp-route-id="@player.PlayerId">@player.FirstName @player.LastName</a></td>
+                    <td><a class="nav-link text-light" asp-controller="Player" asp-action="PlayerView" asp-route-id="@player.PlayerId">@player.FirstName @player.LastName</a></td>
                     @* <td>@player.FirstName @player.LastName</td> *@
                     <td class="text-center">@player.PlayerPoints</td>
                     @if(Model.UserId == Context.Session.GetInt32("uuid")&& Model.TeamUpdate == 0)
