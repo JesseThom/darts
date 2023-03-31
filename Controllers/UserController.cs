@@ -26,6 +26,7 @@ public class UserController : Controller
         
         List<Team> AllTeams =_context.Teams
             .Include(team => team.TeamOwner)
+            .Include(i => i.TeamPlayers)
             .OrderByDescending(order =>order.TeamPoints)
             .ToList();
 

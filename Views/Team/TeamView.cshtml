@@ -6,7 +6,8 @@
 <div class="whitebox w-75-sm mx-auto p-3">
     <div class="d-flex justify-content-evenly">
         <h2 class="mb-3">@Model.TeamName</h2>
-        <h2>Points: @Model.TeamPoints</h2>
+        <h2>Total Points: @Model.TeamPoints</h2>
+        <h2>Current Points @Model.TeamPlayers.Sum(s => s.PlayerPoints)</h2>
     </div>
     <table class="table table-dark table-striped">
         <thead>

@@ -9,7 +9,8 @@
     <thead>
         <th>Rank</th>
         <th>Team Name</th>
-        <th>Points</th>
+        <th>This Week Points</th>
+        <th>Total Points</th>
     </thead>
     <tbody>
         @{int place = 0;}
@@ -19,6 +20,7 @@
                 <td>@place</td>
                 @* <td>@team.TeamName</td> *@
                 <td><a class="nav-link text-light" asp-action="TeamView" asp-controller="Team" asp-route-id="@team.TeamId">@team.TeamName</a></td>
+                <td>@team.TeamPlayers.Sum(s => s.PlayerPoints)</td>
                 <td>@team.TeamPoints</td>
             </tr>
         }
